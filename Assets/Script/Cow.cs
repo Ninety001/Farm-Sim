@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Cow : GameManager
+public class Cow
 {
     #region //Attributes
     //Chicken Attributes
-    private string cowname;
+    private string name;
     public string Name
     {
         get { return name; }
@@ -18,17 +18,6 @@ public class Cow : GameManager
             {
                 { name = value; }
             }
-        }
-    }
-
-    private int health;
-    public int Health
-    {
-        get { return health; }
-        set
-        {
-            if (value >= 0) health = value;
-            else { health = 0; }
         }
     }
 
@@ -54,14 +43,14 @@ public class Cow : GameManager
             else happiness = value;
         }
     }
-    private int milk;
+    private float milk;
 
-    public int Milk
+    public float Milk
     {
-        get { return Milk ; }
+        get { return milk ; }
         set
         {
-            Milk = 0;
+            milk = 0;
         }
 
     }
@@ -70,10 +59,9 @@ public class Cow : GameManager
 
     #region //Behavior
     //Chicken Behavior
-    public Cow(string newName, int newHealth, int newHunger, int newHappiness)
+    public Cow(string newName, int newHunger, int newHappiness)
     {
-        Name = newName;
-        Health = newHealth;
+        Name = newName; 
         Hunger = newHunger;
         Happiness = newHappiness;
         Milk = 0;
@@ -96,20 +84,20 @@ public class Cow : GameManager
 
     public void Feed(string food)
     {
-        Debug.Log($"{Name} is eating ");
+        Debug.Log($"{Name} is eating {food} ");
         AdjustHunger(-10);
         AdjustHappiness(+10);
     }
 
     public void GetStatus()
     {
-        Debug.Log($"{Name} | Health: {Health}, Hunger: {Hunger}, Happiness: {Happiness}, Milks: {Milk}");
+        Debug.Log($"{Name} | Hunger: {Hunger}, Happiness: {Happiness}, Milks: {Milk}");
     }
 
     public void Moo()
     {
-        Debug.Log($"{Name} giving a loud MOOMOOMOO! ");
         AdjustHappiness(+10);
+        Debug.Log($"{Name} giving a loud MOOMOOMOO! | Current Happiness: {Happiness} ");
     }
 
     #endregion

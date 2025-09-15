@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class Chicken : GameManager
+public class Chicken
 {
     #region //Attributes
     //Chicken Attributes
-    private string chickenname;
+    private string name;
     public string Name
     {
         get { return name; }
@@ -18,17 +18,6 @@ public class Chicken : GameManager
             {
                 { name = value; }
             }
-        }
-    }
-
-    private int health;
-    public int Health
-    {
-        get { return health; }
-        set
-        {
-            if (value >= 0) health = value;
-            else { health = 0; }
         }
     }
 
@@ -70,10 +59,9 @@ public class Chicken : GameManager
 
     #region //Behavior
     //Chicken Behavior
-    public Chicken(string newName, int newHealth, int newHunger, int newHappiness)
+    public Chicken(string newName, int newHunger, int newHappiness)
     {
         Name = newName;
-        Health = newHealth;
         Hunger = newHunger;
         Happiness = newHappiness;
         Eggs = 0;
@@ -96,14 +84,14 @@ public class Chicken : GameManager
 
     public void Feed(string food)
     {
-        Debug.Log($"{Name} is eating ");
+        Debug.Log($"{Name} is eating {food} ");
         AdjustHunger(-10);
         AdjustHappiness(+10);
     }
 
     public void GetStatus()
     {
-        Debug.Log($"{Name} | Health: {Health}, Hunger: {Hunger}, Happiness: {Happiness}, Eggs: {Eggs}");
+        Debug.Log($"{Name} | Hunger: {Hunger}, Happiness: {Happiness}, Eggs: {Eggs}");
     }
 
     public void Sleep()
