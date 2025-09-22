@@ -1,32 +1,44 @@
+using JetBrains.Annotations;
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+
 public class GameManager : MonoBehaviour
 {
+    public List<Animal> animals = new List<Animal>();
+    public Horse horse;
+    public Chicken chicken;
+    public Cow cow;
+
     void Start()
     {
-        //Chicken
-        Chicken chicken = new Chicken("Chicky", 30, 20);
-        Cow cow = new Cow("Steak", 30, 20);
+        Debug.Log("Welcome to MY FARM !!!");
+        Debug.Log($"We have {animals.Count} animal!");
 
-        chicken.GetStatus();
-        chicken.MakeSound();
+        chicken.Init("Ken",10,10);
+        cow.Init("Moomoo",20,20);
+        horse.Init("BigBlack",25,25);
 
-        chicken.Feed("Corn");
-        chicken.GetStatus();
+        foreach (Animal animal in animals)
+        {
+            animal.GetStatus();
+        }
 
+        foreach (Animal animal in animals)
+        {
+            animal.MakeSound();
+            animal.Feed(5);
+        }
+
+        chicken.Feed("corn", 5);
         chicken.Sleep();
-        chicken.GetStatus();
 
-        Debug.Log($"===================================================");
-
-        
-        cow.GetStatus();
-        cow.MakeSound();
-
-        cow.Feed("Hay");
-        cow.GetStatus();
-
+        cow.Feed("Hay", 3);
         cow.Moo();
-        cow.GetStatus();
+
+        horse.Feed("Carrot", 5);
     }
+
 
 }
